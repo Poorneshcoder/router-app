@@ -10,6 +10,16 @@ function App() {
   const history = useHistory();
   return (
     <div className="App">
+      <div>
+        <button onClick={()=>history.goForward()}
+        >
+         - &gt;
+        </button>
+        <button onClick={()=>history.goBack()}
+        >
+          &lt;-
+        </button>
+      </div>
       
       <div className='nav-btn'>
         <button
@@ -30,11 +40,11 @@ function App() {
           Skills
         </button>
 
-        <button
-          onClick={()=>history.push('/contact')}
+        {/* <button
+          onClick={()=>history.push('/contact/102/adfsdfsdfs')}
         >
           Contact
-        </button>
+        </button> */}
 
       </div>
    
@@ -48,7 +58,7 @@ function App() {
         <Route path="/skills">
           <Skills />
         </Route>
-        <Route path="/contact">
+        <Route path="/contact/:id">
           <Contact />
         </Route>
       </Switch>
