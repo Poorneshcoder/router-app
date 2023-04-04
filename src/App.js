@@ -5,6 +5,8 @@ import Skills from './Pages/Skills';
 import './App.css';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import NoPage from './Pages/NoPage';
+import LoginPage from './LoginPage';
+import SignUpPage from './SignUpPage';
 
 function App() {
   // use history will help to navigate to the specific route
@@ -24,7 +26,7 @@ function App() {
       
       <div className='nav-btn'>
         <button
-          onClick={()=>history.push('/')}
+          onClick={()=>history.push('/home')}
         >
           Home
         </button>
@@ -41,25 +43,50 @@ function App() {
           Skills
         </button>
 
+        <button
+          onClick={()=>history.push('/login')}
+        >
+          login
+        </button>
+
 
       </div>
    
       <Switch>
+
         <Route exact path="/">
+         <h1> Welcome to the application please login/signup to continue </h1>
+        </Route>
+
+        <Route exact path="/login">
+          <LoginPage />
+        </Route>
+
+        <Route exact path="/register">
+          <SignUpPage />
+        </Route>
+
+
+        <Route exact path="/home">
           <Home />
         </Route>
+
         <Route path="/about">
           <About />
         </Route>
+
         <Route path="/skills">
           <Skills />
         </Route>
+        
         <Route path="/user/:id/:name">
           <UserDetails />
         </Route>
+
         <Route path="**">
           <NoPage />
         </Route>
+
       </Switch>
     </div>
   );
