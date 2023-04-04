@@ -21,7 +21,7 @@ const Home = () =>{
             {students.map((stud, idx)=>
                 <div key={idx}>
                     <h1>{stud.name}</h1>
-                    <button onClick={()=>history.push(`/contact/${stud.id}`)}
+                    <button onClick={()=>history.push(`/user/${stud.id}/${stud.name}`)}
                     >Details</button>
                 </div>
             )};
