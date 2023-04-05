@@ -29,6 +29,7 @@ const LoginPage = () => {
             setError("Sorry you have entered incorrect credientials")
         } else {
             setError("");
+            localStorage.setItem("user-name", name);
             history.push("/home");
         }
     }

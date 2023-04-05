@@ -1,4 +1,5 @@
-import About from './Pages/About';
+import React from 'react';
+// import About from './Pages/About';
 import Home from './Pages/Home';
 import UserDetails from './Pages/UserDetails';
 import Skills from './Pages/Skills';
@@ -7,6 +8,10 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 import NoPage from './Pages/NoPage';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
+import { lazy } from 'react';
+import { Suspense } from 'react';
+//lazy loding functionality
+const OptimizedAbout = lazy(()=> import('./Pages/About'))
 
 function App() {
   // use history will help to navigate to the specific route
@@ -72,7 +77,9 @@ function App() {
         </Route>
 
         <Route path="/about">
-          <About />
+          <Suspense fallback={<div>Loading.....</div>}>
+            <OptimizedAbout/>
+          </Suspense>
         </Route>
 
         <Route path="/skills">

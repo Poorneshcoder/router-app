@@ -1,8 +1,13 @@
 import React from "react";
 
-const About = () =>{
+
+
+const About = ()=> {
     return(
-        <div>About</div>
+        <div>lorem*50
+
+
+        </div>
     )
 }
 

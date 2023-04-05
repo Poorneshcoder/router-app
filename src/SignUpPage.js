@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const SignUpPage = () => {
@@ -7,11 +7,37 @@ const SignUpPage = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
+    const [datas, setDatas] = useState("");
+
+
+    // unique user authentication 
+
+    useEffect(()=> {
+        const getUserList = async () => {
+            const response = await fetch("https://642c15f2d7081590f931d433.mockapi.io/userlist",{
+                method:"GET",
+            });
+            const data = await response.json();
+            setDatas(data);
+        }
+        getUserList();
+    },[]);
+
+    const handleCheck = (event) => {
+        event.preventDefault();
+        const check = datas.find(elm => elm.name === name);
+        if(!check){
+            handleRegister();
+        } else {
+            setError("User name already exited");
+        }
+    }
+
 
 // creating functionality for signup
 
-    const handleRegister = async (event) => {
-        event.preventDefault();
+    const handleRegister = async () => {
+        
         try {
             const response = await fetch ('https://642c15f2d7081590f931d433.mockapi.io/userlist',{
                 method: "POST",
@@ -30,6 +56,7 @@ const SignUpPage = () => {
            }
         } catch (error) {
             setMessage("");
+            localStorage.setItem("user-name", name);
             setError('Sorry some Error occured');
         }
     }
@@ -38,7 +65,7 @@ const SignUpPage = () => {
         <div>
 
             <div className='login-page'>
-                <form  onSubmit={handleRegister}>
+                <form  onSubmit={handleCheck }>
                 <input 
                 placeholder="Name"
                 type="text"
