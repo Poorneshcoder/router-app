@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { createContext, useReducer } from 'react';
 // import About from './Pages/About';
 import Home from './Pages/Home';
 import UserDetails from './Pages/UserDetails';
-import Skills from './Pages/Skills';
+import Context from './Pages/Context';
 import './App.css';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import NoPage from './Pages/NoPage';
@@ -10,12 +10,19 @@ import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
 import { lazy } from 'react';
 import { Suspense } from 'react';
+import { reducer } from './Reducer/reducer';
+
 //lazy loding functionality
 const OptimizedAbout = lazy(()=> import('./Pages/About'))
+
+export const ReducerContext = createContext(null);
 
 function App() {
   // use history will help to navigate to the specific route
   const history = useHistory();
+
+ const [state, dispatch] = useReducer(reducer,{datas:[]});
+
   return (
     <div className="App">
       <div>
@@ -45,7 +52,7 @@ function App() {
         <button
           onClick={()=>history.push('/skills')}
         >
-          Skills
+          Context
         </button>
 
         <button
@@ -83,7 +90,9 @@ function App() {
         </Route>
 
         <Route path="/skills">
-          <Skills />
+          <ReducerContext.Provider value={[state, dispatch]}>
+            <Context />
+          </ReducerContext.Provider>
         </Route>
         
         <Route path="/user/:id/:name">
