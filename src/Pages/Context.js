@@ -33,4 +33,4 @@ const Context = () =>{
     )
 }
 
-export default Skills;
+export default Context;
