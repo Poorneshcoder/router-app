@@ -11,6 +11,7 @@ import SignUpPage from './SignUpPage';
 import { lazy } from 'react';
 import { Suspense } from 'react';
 import { reducer } from './Reducer/reducer';
+import Orders from './Pages/Orders';
 
 //lazy loding functionality
 const OptimizedAbout = lazy(()=> import('./Pages/About'))
@@ -56,6 +57,12 @@ function App() {
         </button>
 
         <button
+          onClick={()=>history.push('/orders')}
+        >
+          Canteen
+        </button>
+
+        <button
           onClick={()=>history.push('/login')}
         >
           login
@@ -97,6 +104,10 @@ function App() {
         
         <Route path="/user/:id/:name">
           <UserDetails />
+        </Route>
+
+        <Route path="/orders">
+          <Orders/>
         </Route>
 
         <Route path="**">
