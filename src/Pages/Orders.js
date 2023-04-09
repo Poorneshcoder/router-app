@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../Redux/ReduxAction/actionCreators";
-import { purchaseProduct, restoreProduct } from "../Redux/ReduxAction";
+// import { purchaseProduct, restoreProduct } from "../Redux/ReduxAction";
 
 const Orders = () => {
     // variables for the function......
@@ -35,6 +35,8 @@ const Orders = () => {
                 onChange={(e)=> setRestore(e.target.value)}
                 />
 
+                {" "}
+
                 <input
                 value={purchase}
                 placeholder="purchase"
@@ -43,20 +45,20 @@ const Orders = () => {
                 
             </div>
             <button
-            onClick={()=>restoreProduct(restore)}
+            onClick={()=>restoreProduct(restore)} 
             >Add Inventory</button>
-                {""}
+                {" "}
             <button
             onClick={()=>purchaseProduct(purchase)}
             >Purchase order</button>
 
             <hr></hr>
 
-            set inventory : {inventory} {''}
+            set inventory : {inventory} {" "}
             <button
             onClick={()=>setInventory(inventory + 100)}
             >Add Inventory</button>
-                {''}
+                {" "}
             <button
             onClick={()=>setInventory(inventory - 50)}
             >Purchase order</button>
