@@ -11,14 +11,15 @@ const Orders = () => {
     // const purchaseDispatch = useDispatch(purchaseProduct);
     // const purchaseDispatch = useDispatch(restoreProduct);
 
-    const {purchaseProduct, restoreProduct} = bindActionCreators(actionCreators, dispatch)
+    const {purchaseProduct, restoreProduct, fetchTheUserDetails} = bindActionCreators(actionCreators, dispatch)
 
-    // const allactions = bindActionCreators(actionCreators, dispatch);
-    // console.log(allactions);
+    const allactions = bindActionCreators(actionCreators, dispatch);
+    console.log(allactions);
 
     console.log(reduxState);
     console.log(reduxState.inventory);
     console.log(reduxState.userList);
+    const states = reduxState.userList;
 
     const [inventory, setInventory] = useState(0);
     const [restore, setRestore] = useState(0);
@@ -62,6 +63,17 @@ const Orders = () => {
             <button
             onClick={()=>setInventory(inventory - 50)}
             >Purchase order</button>
+
+            <button onClick={()=>fetchTheUserDetails()}
+            >Fetch Dispatch</button>
+            <hr />
+
+            <div>
+                {states.loading === true ? <p>Loading....</p>: 
+                <div>
+                    {states.users.map((item, idx)=>{<p key={idx}>{item.name}</p>})}
+                    </div>}
+            </div>
 
 
 
